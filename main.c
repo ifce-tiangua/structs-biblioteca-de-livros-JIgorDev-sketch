@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 typedef struct livros{
-	char* nome[20];
-	char* isbn[20];
+	char nome[20];
+	char isbn[20];
 	double preco;
 	int score;
-	char* editora[20];
+	char editora[20];
 }livro, *pLivro;
 
 pLivro livro_aloc(int qtde){
@@ -20,16 +20,18 @@ void livro_ler(pLivro livros, int qtde){
 	int i;
 	for(i = 0; i < qtde; i++){
 
-	scanf("%[^\n]", livros[i].nome);
+	scanf("%s", livros[i].nome);
 	scanf("%s", livros[i].isbn);
 	scanf("%lf", &livros[i].preco);
 	scanf("%d", &livros[i].score);
-	scanf("%[^\n]", livros[i].editora);
+	scanf("%s", livros[i].editora);
 	
    }	
  } 
 
-void livro_exibe(pLivro livro, int qtde){
+void livro_exibe(pLivro livros, int qtde){
+	int i;
+	
 	for(i = 0; i < qtde; i++){
 		
 	printf("Livro %d:\n", i + 1);
@@ -41,6 +43,19 @@ void livro_exibe(pLivro livro, int qtde){
    }
   }
 
-pLivro livro_desaloca(pLivro livros){
+void livro_desaloca(pLivro livros){
 	free(livros);
+}
+
+int main(){
+	
+	int qtde;
+	
+	scanf("%d", &qtde);
+	pLivro livros = livro_aloc(qtde);  
+	livro_ler(livros, qtde);
+	livro_exibe(livros, qtde);
+	livro_desaloca(livros);
+	
+	return 0;
 }

@@ -55,10 +55,15 @@ int main(){
 	int qtde;
 	
 	scanf("%d", &qtde);
+	if(qtde <= 0)
+	printf("Sem livros\n");
+	
+	else{
 	pLivro livros = livro_aloc(qtde);  
 	livro_ler(livros, qtde);
 	livro_exibe(livros, qtde);
 	livro_desaloca(livros);
+    }
 	
 	return 0;
 }
